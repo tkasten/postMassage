@@ -5,25 +5,25 @@ var chai = require('chai'),
 
 describe('PostMassage', function() {
 
-  var mockWindow, lastLogMsg;
+  var lastLogMsg;
   var myNameSpace = 'myCoolNamespace'
 
   beforeEach(function(){
-    mockWindow = {
+    window = {
       lastMessage: undefined,
       postMessage: function(msg, origin){
-        mockWindow.lastMessage = msg
-        mockWindow.lastOrgin = origin
+        window.lastMessage = msg
+        window.lastOrgin = origin
       },
       addEventListener: function(event, handler){
-        mockWindow.eventListener = {
+        window.eventListener = {
           event: event,
           handler: handler
         }
       }
     }
     pmb = new PostMassage({
-      window: mockWindow,
+      window: window,
       namespace: myNameSpace,
       logging: true,
       addListener:false
@@ -40,19 +40,19 @@ describe('PostMassage', function() {
     })
 
     it('nests message in namespace', function() {
-      chai.expect(mockWindow.lastMessage).to.include.keys(myNameSpace)
+      chai.expect(window.lastMessage).to.include.keys(myNameSpace)
     })
 
     it('sets the method', function() {
-      chai.expect(mockWindow.lastMessage[myNameSpace].method).equal('myMethod')
+      chai.expect(window.lastMessage[myNameSpace].method).equal('myMethod')
     })
 
     it('sets the data', function() {
-      chai.expect(mockWindow.lastMessage[myNameSpace].data).equal('myData')
+      chai.expect(window.lastMessage[myNameSpace].data).equal('myData')
     })
 
     it('sets the callback', function() {
-      chai.expect(mockWindow.lastMessage[myNameSpace].callback).equal('myCallbackMethod')
+      chai.expect(window.lastMessage[myNameSpace].callback).equal('myCallbackMethod')
     })
   })
 
@@ -110,7 +110,7 @@ describe('PostMassage', function() {
       beforeEach(function(){
         myMethodCalled = false
         
-        mockWindow.postMessage = function(msg, origin){
+        window.postMessage = function(msg, origin){
           listener({
             data: msg,
             origin: origin
@@ -134,7 +134,7 @@ describe('PostMassage', function() {
     describe('addEventListener', function(){
       it('binds the listener to the window', function() {
          pmb = new PostMassage({
-          window: mockWindow,
+          window: window,
           addListener:true
         })
         chai.expect(pmb.window).to.have.ownProperty('eventListener');
