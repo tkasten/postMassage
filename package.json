@@ -1,0 +1,25 @@
+{
+  "name": "post-massage",
+  "version": "1.0.0",
+  "description": "A stupid simple postMessage wrapper for bi-directional communication between windows",
+  "main": "post-massage.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkasten/postMassage.git"
+  },
+  "author": "Tyler Kasten",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tkasten/postMassage/issues"
+  },
+  "homepage": "https://github.com/tkasten/postMassage#readme",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "gulp": "^3.9.0",
+    "gulp-mocha": "^2.2.0",
+    "mocha": "^2.3.4"
+  }
+}
