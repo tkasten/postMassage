@@ -2,7 +2,7 @@
   "name": "post-massage",
   "version": "1.0.0",
   "description": "A stupid simple postMessage wrapper for bi-directional communication between windows",
-  "main": "post-massage.js",
+  "main": "./src/post-massage.js",
   "scripts": {
     "test": "gulp test"
   },
