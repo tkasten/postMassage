@@ -1,7 +1,7 @@
 var chai = require('chai'),
     should = require('chai').should(),
     expect = require('chai').expect(),
-    pmb = require('../src/post-massage').PostMassage
+    PostMassage = require('../src/post-massage')
 
 describe('PostMassage', function() {
 
