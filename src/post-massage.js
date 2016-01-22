@@ -1,3 +1,8 @@
+/*
+ * File: post-massage.js
+ * Doc: https://github.com/tkasten/postMassage
+ */
+
 var PostMassage = function(opts){
   this.namespace   = opts.namespace   || 'pmb',
   this.tx_origin   = opts.tx_origin   || '*'
