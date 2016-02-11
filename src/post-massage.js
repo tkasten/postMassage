@@ -45,6 +45,8 @@ var PostMassage = function(opts){
       data: data,
       callback: callback
     }
+    // IE9 (of course) calls toString on the message object. So stringify it first.
+    msg = JSON.stringify(msg)
     this.window.postMessage(msg, this.tx_origin)
   },
 
@@ -59,11 +61,17 @@ var PostMassage = function(opts){
   this.buildRxEventListener = function(){
     var self = this
     var listener = function(event){
-      if(event.data[self.namespace]){
+      try{
+        var msg = JSON.parse(event.data);
+      }catch(e){
+        self.log('ignoring non-JSON encoded string message');
+        return;
+      }
+      if(msg[self.namespace]){
         if(self.rx_origin.exec(event.origin)){
-          var method = event.data[self.namespace].method,
-            data     = event.data[self.namespace].data,
-            callback = event.data[self.namespace].callback
+          var method = msg[self.namespace].method,
+            data     = msg[self.namespace].data,
+            callback = msg[self.namespace].callback
           if(self.methods[method]){
             var value = self.methods[method](data, event)
             if(callback){
