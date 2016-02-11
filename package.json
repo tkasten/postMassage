@@ -1,6 +1,6 @@
 {
   "name": "post-massage",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A stupid simple postMessage wrapper for bi-directional communication between windows",
   "main": "./src/post-massage.js",
   "scripts": {
