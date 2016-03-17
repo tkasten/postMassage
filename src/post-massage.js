@@ -4,13 +4,26 @@
  */
 
 var PostMassage = function(opts){
-  this.namespace   = opts.namespace   || 'pmb',
-  this.tx_origin   = opts.tx_origin   || '*'
-  this.rx_origin   = opts.rx_origin   || /.*/
-  this.window      = opts.window      || parent,
-  this.methods     = opts.methods     || {}
-  this.logging     = opts.logging     || false
-  this.addListener = opts.addListener === false ? false : true
+  var self = this;
+  this.namespace   = opts.namespace   || 'pmb';
+  this.tx_origin   = opts.tx_origin   || '*';
+  this.rx_origin   = opts.rx_origin   || /.*/;
+  this.methods     = opts.methods     || {};
+  this.logging     = opts.logging     || false;
+  this.addListener = opts.addListener === false ? false : true;
+  this.container   = opts.container;
+
+  if(this.container) {
+    if(this.container.contentWindow) {
+      this.window = this.container.contentWindow;
+    } else {
+      this.container.onLoad(function () {
+        self.window = self.container.contentWindow;
+      });
+    }
+  } else {
+    this.window = opts.window || parent;
+  }
 
   this.call = function(method, data, callback){
      /***************************************************************************
