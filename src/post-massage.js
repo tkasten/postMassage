@@ -1,6 +1,9 @@
 /*
  * File: post-massage.js
+ * Version: 1.0.5
+ * Desc: A stupid simple postMessage wrapper for bi-directional communication between windows
  * Doc: https://github.com/tkasten/postMassage
+ * Author: Tyler Kasten tyler.kasten@gmail.com
  */
 
 var PostMassage = function(opts){
